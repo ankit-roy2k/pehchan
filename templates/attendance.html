@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block Title %}Pehchan E-Learning | Attendance{% endblock Title %}
+
+{% block Body %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+<div class="container">
+    <div class="alert alert-success alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ msg }}
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<a href="/home" class="back" style="text-decoration: none; color:goldenrod;">
+    < Back</a>
+        <div class="col-12 content">
+            <h1 class="text-center">Automated Attendance System</h1><br>
+            <div class="rotate">
+                <p class="container">
+                    It's time to eliminate the traditional way of recording attendances at colleges and offices which
+                    either uses roll-calls, signatures or biometric fingerprints with a Smart Automated Facial
+                    Recognition Attendance System. Also, after the pandemic broke out, it has become very crucial for
+                    every organisation to have such a
+                    system as
+                    this doesn't require any touch and promotes public safety. <br><br>
+                    The system is designed in such a manner that it is capable of being utilised at organisations like,
+                    colleges,
+                    offices, departmental stores, restaurants, etc. where mass attendances are taken. It's a
+                    comparatively low
+                    cost and
+                    redundant setup which is very easy to install and work with. <br><br></p>
+                <h3 class="text-center">Technological Overview</h3>
+                <p class="container">Dlib's face_recognition module has a built-in detector and transformer. The key
+                    step is
+                    a CNN feature
+                    extractor the generates 128-d facial embeddings. This module is based on the ResNet architecture.
+                    ResNet takes an image of a person’s face as input and outputs a vector of 128 numbers which
+                    represents the
+                    most important features of a face. In machine learning, this vector is called embedding. This vector
+                    is the
+                    compared to the training dataset a the it classifies it.
+                </p><br><br>
+                <h3 class="text-center">Requirements</h3>
+                <p>
+                <ul class="container">
+                    <li>HD Camera</li>
+                    <li>RAM (8GB or above)</li>
+                    <li>GPU (NVIDIA 2GB or above with CUDA installed)</li>
+                    <li>CPU (2.50 Ghz , Multicore or above)</li>
+                    <li>Python 3.9 or above</li>
+                    <li>OpenCV-python 4.5.5.62</li>
+                    <li>TensorFlow 2.5.0</li>
+                    <li>'face_recognition' Library along with Dependencies</li>
+                </ul>
+                </p>
+            </div>
+        </div>
+        <div class="uploads container">
+            <h2 class="text-center">Introduce Yourself to the System</h2><br>
+            <form action="/attendance" method="POST" enctype="multipart/form-data" class="was-validated">
+                <div class="form-group">
+                    <input type="text" name="registration" placeholder="Enter your registration number"
+                        pattern="[0-9]{10}" class="form-control" required>
+                    <p class="invalid-feedback">Please enter a valid registration number</p>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Enter your name" class="form-control" required>
+                    <p class="invalid-feedback">Please enter a valid name</p>
+                </div>
+                <div class="form-group">
+                    <select name="semester" class="form-control" required>
+                        <option value="" disabled selected>Enter semester</option>
+                        <option value="1st">1st</option>
+                        <option value="2nd">2nd</option>
+                        <option value="3rd">3rd</option>
+                        <option value="4th">4th</option>
+                        <option value="5th">5th</option>
+                        <option value="6th">6th</option>
+                        <option value="7th">7th</option>
+                        <option value="8th">8th</option>
+                    </select>
+                    <p class="invalid-feedback">Please enter a valid semester</p>
+                </div>
+                <div class="form-group">
+                    <select name="branch" class="form-control" required>
+                        <option value="" disabled selected>Enter branch</option>
+                        <option value="CSE">CSE</option>
+                        <option value="ECE">ECE</option>
+                        <option value="EEE">EEE</option>
+                        <option value="EE">EE</option>
+                        <option value="MECH">MECH</option>
+                        <option value="CIVIL">CIVIL</option>
+                        <option value="AGRI">AGRI</option>
+                    </select>
+                    <p class="invalid-feedback">Please enter a valid branch</p>
+                </div>
+                <div class="form-group">
+                    <input type="file" name="file" required accept="image/*" class="form-control">
+                    <p class="valid-feedback">Done</p>
+                </div>
+                <center><input type="submit" value="Hey!" class="btn"></center>
+            </form>
+        </div><br><br><br>
+        <div class="uploads container">
+            <h2 class="text-center">Take Attendance</h2>
+            <div class="row">
+                <div class="col-3" style="margin: auto;">
+                    <a href="/start" class="btn btn-success" style="display: block;">Start</a>
+                </div>
+                <div class="col-3" style="margin: auto;">
+                    <a href="/stop" class="btn btn-danger" style="display: block;">Stop</a>
+                </div>
+            </div><br>
+        </div>
+        <br><br><br><br><br><br>
+
+        {% endblock Body %}
